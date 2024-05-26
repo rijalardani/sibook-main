@@ -48,9 +48,9 @@ class UserController extends Controller
     ]);
     if (Auth::attempt($credential)) {
       $request->session()->regenerate();
-      return redirect()->intended('/dashboard');
+      return redirect()->intended('/blog');
     }
-    
+
 
     return back()->with('error', 'Login Failed!');
   }
@@ -62,7 +62,10 @@ class UserController extends Controller
 
   public function home()
   {
-    return view('home');
+    return view('home', [
+      'title' => 'Home',
+      'active' => 'home'
+    ]);
   }
 
   public function logout(Request $request)

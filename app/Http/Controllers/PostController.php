@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
-use App\Models\Bookmark;
+
 
 class PostController extends Controller
 {
@@ -23,29 +23,28 @@ class PostController extends Controller
       $title = ' in ' . $user->name;
     }
 
-    return view('posts', [
+    return view('posts2', [
       'title' => 'All posts' . $title,
-      'posts' => Post::with(['author', 'category'])->latest()->filter(request(['search', 'category', 'author']))->paginate(5)->withQueryString(), 
+      'posts' => Post::with(['author', 'category'])->latest()->filter(request(['search', 'category', 'author']))->paginate(9)->withQueryString(),
+      'categories' => Category::all(),
       'active' => 'post'
     ]);
   }
 
   public function show(Post $post)
   {
-    $isBookmarked = auth()->check() ? $post->bookmarks()->where('user_id', auth()->user()->id)->exists() : false;
-
+   
     return view('post', [
       'title' => 'single post',
       'active' => 'post',
       'post' => $post,
-      'isBookmarked' => $isBookmarked
     ]);
   }
 
   public function categories(Category $category)
   {
     return view('categories', [
-      'title'=> "List Posts Category in $category->name",
+      'title' => "List Posts Category in $category->name",
       'categories' => Category::all(),
       'active' => 'categories'
     ]);
@@ -54,7 +53,7 @@ class PostController extends Controller
   public function category(Category $category)
   {
     return view('posts', [
-      'title' => 'List Post by category '. $category->name,
+      'title' => 'List Post by category ' . $category->name,
       'posts' => $category->post->load('author', 'category'),
       'active' => 'post'
     ]);
@@ -63,10 +62,9 @@ class PostController extends Controller
   public function author(User $author)
   {
     return view('posts', [
-      'title' => 'post by auhtor ' . $author->name,
+      'title' => 'post by author ' . $author->name,
       'posts' => $author->post->load('author', 'category'),
       'active' => 'post'
     ]);
   }
-
 }

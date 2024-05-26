@@ -63,7 +63,7 @@ class DashboardPostController extends Controller
     {
   
       return view('dashboard.posts.show', [
-        'post' => $post,
+        'post' => $post
       ]);
     }
 

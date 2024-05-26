@@ -2,7 +2,7 @@
   <div class="position-sticky pt-3">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+        <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/blog">
           <span data-feather="home" class="align-text-bottom"></span>
           Dashboard
         </a>
@@ -13,12 +13,12 @@
           My Posts
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link {{ Request::is('dashboard/bookmarks') ? 'active' : '' }}" href="/dashboard/bookmarks">
           <span data-feather="bookmark" class="align-text-bottom"></span>
           My Bookmark
         </a>
-      </li>
+      </li> --}}
       @can('admin')
       <hr>
       <li class="nav-item">

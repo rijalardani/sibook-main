@@ -1,11 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.main2')
 
-@section('container')
+@section('content')
 
 <main class=" w-100 m-auto ">
   <div class="row justify-content-center align-items-center h-100">
     <div class="col-md-4 col-lg-6">
-      <h1 class="h3 mb-3 d-fex justify-content-center fw-bold">Register An Account</h1>
+      <h1 class="h3 mb-3 d-fex justify-content-center fw-bold
+      ">Register An Account</h1>
       <form action="/register" method="POST">
         @csrf
         <div class="form-floating">
@@ -59,10 +60,17 @@
       <p>Sudah punya akun? <a href="/login">Masuk</a> </p>
     </div>
   </div>
-
+ 
 </main>
 
 @endsection
 {{-- <div style="  position: absolute;bottom: 0;width: 80%;">
                 @include('partials.footer')
             </div> --}}
+<style>
+  
+.h3.mb-3.d-fex.justify-content-center.fw-bold {
+              z-index: 999;
+}
+            
+</style>
